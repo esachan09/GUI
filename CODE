@@ -1,0 +1,246 @@
+from typing import Counter
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5 import uic
+import vlc
+'''
+import speech_recognition as sr
+import pyttsx3
+'''
+class Videos:
+    def __init__(self, location):
+        self.media = vlc.MediaPlayer(location)
+    def play(self):
+        self.media.play()
+    def stop(self):
+        self.media.stop()
+
+vid1 = Videos("Wawa.mp4")
+vid2 = Videos("Binicayan.mp4")
+vid3 = Videos("Parawagan.mp4")
+vid4 = Videos("Pamitinan.mp4")
+vid5 = Videos("Banoi.mp4")
+vid6 = Videos("Suso.mp4")
+vid7 = Videos("rules.mp4")
+vid8 = Videos("Map.mp4")
+vid9 = Videos("Campaign.mp4")
+
+
+'''
+def speak(text:str):
+    engine = pyttsx3.init()
+    engine.setProperty("rate",100)
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice',voices[14].id)
+    engine.say(text)
+    engine.runAndWait()
+
+def listen():
+    r = sr.Recognizer()
+    mic = sr.Microphone()
+
+    while True:
+        with mic as source:
+            audio = r.listen(source)
+        words = r.recognize_google(audio)
+        print(words)
+
+        if words == "good morning":
+            speak("good morning")
+            break
+        else:
+            speak("i cannot understand you")
+'''
+class Main(QWidget):  # Welcome screen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('welcome.ui', self)
+        self.btn.clicked.connect(self.show_welcome)
+
+    def show_welcome(self):
+        self.welcome = Form()
+        self.welcome.show()
+        self.hide()
+
+
+class Form(QWidget):  # SecondScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('first.ui', self)
+        self.btn1.clicked.connect(self.show_wawa)
+        self.btn2.clicked.connect(self.show_binicayan)
+        self.btn3.clicked.connect(self.show_parawagan)
+        self.btn4.clicked.connect(self.show_pamintinan)
+        self.btn5.clicked.connect(self.show_banoi)
+        self.btn6.clicked.connect(self.show_suso)
+        self.btn7.clicked.connect(self.show_rules)
+        self.mapsbtn.clicked.connect(self.show_maps)
+        self.btn8.clicked.connect(self.show_campaign)
+
+    def show_wawa(self):
+        self.wawa = wawa()
+        self.wawa.show()
+        self.hide()
+
+    def show_binicayan(self):
+        self.binicayan = binicayan()
+        self.binicayan.show()
+        self.hide()
+
+    def show_parawagan(self):
+        self.parawagan = parawagan()
+        self.parawagan.show()
+        self.hide()
+
+    def show_pamintinan(self):
+        self.pamintinan = pamintinan()
+        self.pamintinan.show()
+        self.hide()
+
+    def show_banoi(self):
+        self.banoi = banoi()
+        self.banoi.show()
+        self.hide()
+
+    def show_suso(self):
+        self.suso = suso()
+        self.suso.show()
+        self.hide()
+
+    def show_rules(self):
+        self.rules = rules()
+        self.rules.show()
+        self.hide()
+
+    def show_maps(self):
+        self.maps = maps()
+        self.maps.show()
+        self.hide()
+
+    def show_campaign(self):
+        self.campaign = campaign()
+        self.campaign.show()
+        self.hide()
+
+class wawa(QWidget):  # wawaScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('wawa.ui', self)
+        self.btn9.clicked.connect(self.show_Form)
+        self.play_btn.clicked.connect(vid1.play)
+        self.stop_btn.clicked.connect(vid1.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+class binicayan(QWidget):#binicayanScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('binicayan.ui', self)
+        self.btn10.clicked.connect(self.show_Form)
+        self.play_btn2.clicked.connect(vid2.play)
+        self.stop_btn2.clicked.connect(vid2.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+class parawagan(QWidget):# parawaganScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('parawagan.ui', self)
+        self.btn11.clicked.connect(self.show_Form)
+        self.play_btn3.clicked.connect(vid3.play)
+        self.stop_btn3.clicked.connect(vid3.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+class pamintinan(QWidget):#pamintinanScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('pamintinan.ui', self)
+        self.btn12.clicked.connect(self.show_Form)
+        self.play_btn4.clicked.connect(vid4.play)
+        self.stop_btn4.clicked.connect(vid4.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+class banoi(QWidget):#banoiScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('banoi.ui', self)
+        self.btn14.clicked.connect(self.show_Form)
+        self.play_btn5.clicked.connect(vid5.play)
+        self.stop_btn5.clicked.connect(vid5.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+class suso(QWidget):#susoScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('suso.ui', self)
+        self.btn13.clicked.connect(self.show_Form)
+        self.play_btn6.clicked.connect(vid6.play)
+        self.stop_btn6.clicked.connect(vid6.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+class rules(QWidget):#susoScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('rules.ui', self)
+        self.btn_back.clicked.connect(self.show_Form)
+        self.btn_play.clicked.connect(vid7.play)
+        self.btn_stop.clicked.connect(vid7.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+class maps(QWidget):#susoScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('maps.ui', self)
+        self.btn_back2.clicked.connect(self.show_Form)
+        self.btn_play2.clicked.connect(vid8.play)
+        self.btn_stop2.clicked.connect(vid8.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+class campaign(QWidget):#susoScreen
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('campaign.ui', self)
+        self.btn_back3.clicked.connect(self.show_Form)
+        self.btn_play3.clicked.connect(vid9.play)
+        self.btn_stop3.clicked.connect(vid9.stop)
+
+    def show_Form(self):
+        self.Form = Form()
+        self.Form.show()
+        self.hide()
+
+app = QApplication([])
+window = Main()
+window.show()
+app.exec_()
